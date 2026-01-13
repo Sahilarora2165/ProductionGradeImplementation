@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: practice_db
+      POSTGRES_USER: sahilarora
+      POSTGRES_PASSWORD: sahil1175
+
+  app:
+    image: task
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/practice_db
+      SPRING_DATASOURCE_USERNAME: sahilarora
+      SPRING_DATASOURCE_PASSWORD: sahil1175
